@@ -14,18 +14,18 @@ def get_people_in_a_project(projectId):
 
     return json.loads("".join(people))
 
-def find_ewok_id_in_people(peopleList):
+def find_person_id_in_people(peopleList, personName):
     for person in peopleList:
-        if "Ewok" in person['Value']:
+        if personName in person['Value']:
             return person['ID']
     return None
 
-def find_ewok_project_id():
+def find_project_id(projectName):
     projectsObj = issueTracker.getProjects()
     for pp in projectsObj:
         projects = json.loads(pp)
         for p in projects:
-            if p['Name'] == 'EWOK':
+            if p['Name'] == projectName:
                 return int(p['ID'])
     return None
 
@@ -33,9 +33,9 @@ def createIssue(issueTitle, issueDescription):
     ##
     ## Prepare Issue
     ##
-    ewokProjectId = find_ewok_project_id()
-    peopleInProject = get_people_in_a_project(ewokProjectId)
-    resolverId = find_ewok_id_in_people(peopleInProject);
+    projectId = find_project_id('EWOK')
+    peopleInProject = get_people_in_a_project(projectId)
+    resolverId = find_person_id_in_people(peopleInProject, "Ewok");
     testerId = resolverId
 
     issueTags = "autoIssue"
