@@ -8,7 +8,7 @@ This is a mix of Javascript and Python hacks to turn a Gmail Email into a [DoneD
 Why?
 ----
 
-This project is here because I often copy-paste content of e-mails into DoneDone. I need to quickly create a ticket out of an email for one member of my team.
+This project is here because I often copy-paste content of e-mails into DoneDone. I need to quickly create a ticket out of an email for one member of my team. Have a look at my [blog post](http://www.savio.dimatteo.it/blog/entry/6) to know more about it!
 
 Tested with
 ----------
