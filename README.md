@@ -13,10 +13,10 @@ This project is here because I often copy-paste content of e-mails into DoneDone
 Tested with
 ----------
 
-What follows has been tested exclusively with:
+What follows has been tested exclusively on:
 
-- my version of Google Chrome
-- running in Debian Linux
+- Google Chrome
+- running on Debian Linux
 - Python 2.7.3
 
 Disclaimer
