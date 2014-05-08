@@ -29,14 +29,18 @@ def find_project_id(projectName):
                 return int(p['ID'])
     return None
 
-def createIssue(issueTitle, issueDescription):
+def createIssue(issueTitle, issueDescription, projectName, fixerName, testerName):
     ##
     ## Prepare Issue
     ##
-    projectId = find_project_id('EWOK')
+    projectId = find_project_id(projectName)
+    print "[DEBUG] found project id", projectId, "for project name", projectName
     peopleInProject = get_people_in_a_project(projectId)
-    resolverId = find_person_id_in_people(peopleInProject, "Ewok");
-    testerId = resolverId
+    print "[DEBUG] found ", len(peopleInProject), "people in this project"
+    resolverId = find_person_id_in_people(peopleInProject, fixerName)
+    print "[DEBUG] found id", resolverId, "for fixer name", fixerName
+    testerId = find_person_id_in_people(peopleInProject, testerName)
+    print "[DEBUG] found id", testerId, "for tester name", testerName
 
     issueTags = "autoIssue"
     issuePriority = 1 # low
@@ -45,7 +49,7 @@ def createIssue(issueTitle, issueDescription):
     ## Add issue!
     ##
     retFlag = issueTracker.createIssue(
-        ewokProjectId,
+        projectId,
         issueTitle,
         issuePriority,
         resolverId,
@@ -53,6 +57,8 @@ def createIssue(issueTitle, issueDescription):
         "\n    ".join(issueDescription.split('\n')),
         issueTags
     )
+
+    print "[DEBUG] issue created?" + retFlag
 
     return retFlag
 
@@ -111,6 +117,9 @@ if __name__ == '__main__':
     username = "<YOUR DONEDONE USERNAME>"
     password = "<YOUR DONEDONE PASSWORD>"
     serverPort = 8011
+    projectName = "EWOK"
+    fixerName = "Ewok"
+    testerName = "Ewok"
 
     ###########################################################################
 
@@ -128,7 +137,7 @@ if __name__ == '__main__':
         print "[DEBUG] Issue title:", issueTitle
         print "[DEBUG] Issue description:", issueDescription
 
-        if createIssue(issueTitle, issueDescription):
+        if createIssue(issueTitle, issueDescription, projectName, fixerName, testerName):
             return '{"status" : "ok"}'
         else:
             return '{"status" : "ko"}'

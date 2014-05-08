@@ -41,6 +41,9 @@ How To
             username = "<YOUR DONEDONE USERNAME>"
             password = "<YOUR DONEDONE PASSWORD>"
             serverPort = 8011
+            projectName = "<PROJECT NAME IN WHICH TO POST ISSUE>"
+            fixerName = "<FIXER NAME>"
+            testerName = "<TESTER NAME>"
 
     - pip install --user flask
     - pip install --user requests
